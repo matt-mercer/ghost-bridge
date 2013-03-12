@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Machine.Specifications;
 
 namespace GhostBridge.Specs
 {
-    public class GeneratorSpec
+    public class MSBuildSpecsCSharp
     {
 
         [Subject(typeof(MSBuildTask))]
@@ -24,10 +25,9 @@ namespace GhostBridge.Specs
 
             It should_declare_the_class_2 = () => output.ShouldMatch(SpecNamePattern("sub2_passing_test_spec"));
 
+            It should_init_the_tests_1 = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\nested-specs\sub1\passing-test.spec.js"));
 
-            It should_init_the_tests_1 = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\nested-specs\\sub1\\passing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
-
-            It should_init_the_tests_2 = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\nested-specs\\sub2\\passing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
+            It should_init_the_tests_2 = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\nested-specs\sub2\passing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("2");
         }
@@ -53,8 +53,9 @@ namespace GhostBridge.Specs
 
             It should_declare_the_class_2 = () => output.ShouldMatch(SpecNamePattern("failing_test_spec"));
 
-            It should_init_the_test_1 = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\specs\\passing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
-            It should_init_the_test_2 = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\specs\\failing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
+            It should_init_the_test_1 = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
+
+            It should_init_the_test_2 = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\failing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("2");
         }
@@ -84,7 +85,7 @@ namespace GhostBridge.Specs
 
             It should_have_an_execute = () => output.ShouldContain("Because of = () => Execute();");
 
-            It should_init_the_test = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\specs\\passing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
+            It should_init_the_test = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
         }
@@ -111,7 +112,7 @@ namespace GhostBridge.Specs
 
             It should_have_an_execute = () => output.ShouldContain("Because of = () => Execute();");
 
-            It should_init_the_test = () => output.ShouldMatch(@"Establish context = \(\) => { testFile = @"".*jasmine-specs\\specs\\passing-test\.spec\.js""; chutzpahExe = @""\.\.\\\.\.\\\.\.\\\.\.\\lib\\chutzpah\\chutzpah\.console\.exe""; };");
+            It should_init_the_test = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
         }
@@ -129,7 +130,8 @@ namespace GhostBridge.Specs
                     gb_ns = typeof (MSBuildTask).Namespace;
                     builder = new MSBuildTask {
                         Pattern = "passing-test.spec.js",
-                        ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe"
+                        ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe",
+                        Language = "C#"
                     };
                     BaseDirectory(@"..\..\jasmine-specs\specs");
                 };
@@ -137,6 +139,12 @@ namespace GhostBridge.Specs
             protected static string SpecNamePattern(string filebit)
             {
                 return "public sealed class with_" + filebit + "_([A-Za-z0-9]*) : " + gb_ns + ".with_chutzpah_test_runner";
+            }
+
+            protected static string SpecInitPattern(string filebit)
+            {
+                return @"Establish context = \(\) => Init(@"".*" + Regex.Escape(filebit) + @""",@""" + Regex.Escape(builder.ChutzpahLocation) + "\");";
+
             }
 
             protected static void BaseDirectory(string path)

@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostBridge", "src\GhostBri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostBridge.Specs", "src\GhostBridge.Specs\GhostBridge.Specs.csproj", "{E0CDF479-BDBE-43AF-8692-BDC2A477782D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GhostBridge.Sample.CSharp.MSpec", "src\GhostBridge.Sample.CSharp.MSpec\GhostBridge.Sample.CSharp.MSpec.csproj", "{5210A008-C7EC-4418-891A-120CE185BD28}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GhostBridge.Sample.VBNet.MSpec", "src\GhostBridge.Sample.VBNet.MSpec\GhostBridge.Sample.VBNet.MSpec.vbproj", "{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,18 @@ Global
 		{E0CDF479-BDBE-43AF-8692-BDC2A477782D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0CDF479-BDBE-43AF-8692-BDC2A477782D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0CDF479-BDBE-43AF-8692-BDC2A477782D}.Release|x86.ActiveCfg = Release|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5210A008-C7EC-4418-891A-120CE185BD28}.Release|x86.ActiveCfg = Release|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49A88C9-A0B5-4E4E-AFAD-F3E47DD0A4D2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

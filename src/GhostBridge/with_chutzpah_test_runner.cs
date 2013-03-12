@@ -7,6 +7,8 @@ namespace GhostBridge
     {
         protected static string testFile;
         protected static string chutzpahExe;
+        protected static string stdOut;
+        protected static string stdErr;
         protected static Exception err;
         protected static ChutzpahTestRun ChutzpahTestRun;
 
@@ -43,7 +45,8 @@ namespace GhostBridge
                 Console.WriteLine(err);
                 return;
             }
-
+            stdOut = ChutzpahTestRun.StdOut;
+            stdErr = ChutzpahTestRun.StdErr;
             Console.WriteLine(ChutzpahTestRun.StdErr);
             Console.WriteLine(ChutzpahTestRun.StdOut);
 
