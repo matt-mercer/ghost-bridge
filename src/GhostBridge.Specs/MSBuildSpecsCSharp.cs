@@ -143,7 +143,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"Establish context = \(\) => Init(@"".*" + Regex.Escape(filebit) + @""",@""" + Regex.Escape(builder.ChutzpahLocation) + "\");";
+                return @"Establish context = \(\) => Init\(@"".*" + Regex.Escape(filebit) + @""",@""" + Regex.Escape(builder.ChutzpahLocation) + @"""\);";
 
             }
 
