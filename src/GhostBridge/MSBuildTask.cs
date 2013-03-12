@@ -30,12 +30,16 @@ namespace GhostBridge
         [Output]
         public ITaskItem SpecCount { get; set; }
 
+        [Output]
+        public string SpecFile { get; set; }
+
         public override bool Execute()
         {
             LogMessage("Language " + Language);
             SpecCount = new TaskItem("0");
             LogMessage("Project Dir :: " + ProjectDir);
-            var outputfile = Path.Combine(ProjectDir, "ghost_bridge_specs.cs");
+            SpecFile = "ghost_bridge_specs" + GetExtension();
+            var outputfile = Path.Combine(ProjectDir, SpecFile);
             LogMessage("Will write to : " + outputfile, MessageImportance.Low);
             if (File.Exists(outputfile))
             {
@@ -53,6 +57,20 @@ namespace GhostBridge
 
         }
 
+        string GetExtension()
+        {
+            var language = (Language ?? string.Empty);
+            switch (language)
+            {
+                case "C#":
+                    return ".cs";
+                case "VB":
+                    return ".vb";
+                default:
+                    throw new Exception("Language not recognised, supported languages : C# & VB");
+            }
+        }
+
         SpecCodeProvider GetProvider(ProviderConfig config)
         {
             var language = (Language ?? string.Empty);
@@ -61,7 +79,7 @@ namespace GhostBridge
                 case "C#":
                     return new CSharpSpecProvider(config);
                 case "VB":
-                    return new CSharpSpecProvider(config);
+                    return new VisualBasicSpecProvider(config);
                 default:
                     throw new Exception("Language not recognised, supported languages : C# & VB");
             }

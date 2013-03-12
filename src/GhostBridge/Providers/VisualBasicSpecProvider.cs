@@ -1,7 +1,7 @@
 ﻿using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Reflection;
-using Microsoft.CSharp;
+using Microsoft.VisualBasic;
 
 namespace GhostBridge.Providers
 {
@@ -19,7 +19,7 @@ namespace GhostBridge.Providers
 
         protected override CodeDomProvider CreateProvider()
         {
-            return new CSharpCodeProvider();
+            return new VBCodeProvider();
         }
 
         protected override CodeTypeDeclaration CreateSpec(string testName, string filePath, string baseDirectory)

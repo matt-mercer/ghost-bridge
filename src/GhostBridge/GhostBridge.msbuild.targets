@@ -3,7 +3,7 @@
 	<UsingTask TaskName="GhostBridge.MSBuildTask" AssemblyFile="GhostBridge.dll" />
 	<Target Name="GhostBridge" AfterTargets="AfterResolveReferences">
 		<Message Text="Generating tests" Importance="High" />
-		<GhostBridge.MSBuildTask ProjectDir="$(ProjectDir)" BaseDirectory="$(ProjectDir)jasmine-specs\specs" ChutzpahLocation="..\..\..\..\lib\chutzpah\chutzpah.console.exe" Pattern="passing-test.spec.js" Language="$(Language)">
+		<GhostBridge.MSBuildTask BaseDirectory="$(ProjectDir)jasmine-specs\specs" ChutzpahLocation="..\..\..\..\lib\chutzpah\chutzpah.console.exe" Pattern="passing-test.spec.js" Language="$(Language)" ProjectDir="$(ProjectDir)">
 			<Output TaskParameter="SpecCount" ItemName="SpecCount" />
 		</GhostBridge.MSBuildTask>
 		<Message Text="Found :: @(SpecCount) specs" Importance="High" />

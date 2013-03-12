@@ -5,11 +5,11 @@ using Machine.Specifications;
 
 namespace GhostBridge.Specs
 {
-    public class MSBuildSpecsCSharp
+    public class MSBuildSpecsVisualBasic
     {
 
         [Subject(typeof(MSBuildTask))]
-        public class with_two_nested_specs : with_ghost_bridge_cs
+        public class with_two_nested_specs : with_ghost_bridge_vb
         {
 
             Establish context = () => BaseDirectory(@"..\..\jasmine-specs\nested-specs");
@@ -34,14 +34,14 @@ namespace GhostBridge.Specs
 
 
         [Subject(typeof(MSBuildTask))]
-        public class when_creating_a_multiple_tests_setting_the_proj_dir : with_ghost_bridge_cs
+        public class when_creating_a_multiple_tests_setting_the_proj_dir : with_ghost_bridge_vb
         {
 
             Establish context = () =>
-            {
-                builder.ProjectDir = "c:\\blah\\fakeProject";
-                builder.Pattern = "*.*";
-            };
+                {
+                    builder.ProjectDir = "c:\\blah\\fakeProject";
+                    builder.Pattern = "*.*";
+                };
 
             Because of = () => Execute();
 
@@ -62,7 +62,7 @@ namespace GhostBridge.Specs
 
 
         [Subject(typeof(MSBuildTask))]
-        public class when_creating_a_single_test_setting_the_namespace : with_ghost_bridge_cs
+        public class when_creating_a_single_test_setting_the_namespace : with_ghost_bridge_vb
         {
 
             Establish context = () => builder.Namespace = "Bob";
@@ -76,7 +76,7 @@ namespace GhostBridge.Specs
             It should_output_something = () => output.ShouldNotBeEmpty();
 
             It have_a_using_for_mspec = () => output.ShouldContain(Using("Machine.Specifications"));
-
+            
             It have_a_using_for_gb = () => output.ShouldContain(Using(gb_ns));
 
             It should_declare_the_class = () => output.ShouldMatch(SpecNamePattern("passing_test_spec"));
@@ -89,9 +89,9 @@ namespace GhostBridge.Specs
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
         }
-
+        
         [Subject(typeof(MSBuildTask))]
-        public class when_creating_a_single_test : with_ghost_bridge_cs
+        public class when_creating_a_single_test : with_ghost_bridge_vb
         {
             Because of = () => Execute();
 
@@ -116,7 +116,7 @@ namespace GhostBridge.Specs
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
         }
 
-        public class with_ghost_bridge_cs
+        public class with_ghost_bridge_vb
         {
 
             protected static MSBuildTask builder;
@@ -127,38 +127,44 @@ namespace GhostBridge.Specs
             Establish context = () =>
                 {
                     gb_ns = typeof (MSBuildTask).Namespace;
-                    builder = new MSBuildTask {
-                        Pattern = "passing-test.spec.js",
-                        ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe",
-                        Language = "C#"
-                    };
+                    builder = new MSBuildTask
+                        {
+                            Pattern = "passing-test.spec.js",
+                            ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe",
+                            Language = "VB"
+                        };
                     BaseDirectory(@"..\..\jasmine-specs\specs");
                 };
 
-            protected static string Namespace(string ns)
-            {
-                return "\r\nnamespace " + ns + "\r\n{";
-            }
-
             protected static string Using(string ns)
             {
-                return "using " + ns + ";";
+                return "Imports " + ns;
+            }
+
+            protected static string Namespace(string ns)
+            {
+                return "\r\nNamespace " + ns + "\r\n";
+            }
+
+            protected static string BehavesLike()
+            {
+                return "Behaves_like<a_passing_chutzpah_test> success";
             }
 
             protected static string ExecutePattern()
             {
-                return "";
+                return "Friend [of] As Because = (Sub() Execute())";
             }
 
             protected static string SpecNamePattern(string filebit)
             {
-                return "public sealed class with_" + filebit + "_([A-Za-z0-9]*) : " + gb_ns + ".with_chutzpah_test_runner";
+                return "Public NotInheritable Class with_" + filebit + @"_([A-Za-z0-9]*)\s*Inherits " + gb_ns + ".with_chutzpah_test_runner";
             }
+        
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"Establish context = \(\) => Init\(@"".*" + Regex.Escape(filebit) + @""",@""" + Regex.Escape(builder.ChutzpahLocation) + @"""\);";
-
+                return @"Friend context As Establish = \(Sub\(\) Init\("".*" + Regex.Escape(filebit) + @""",""" + Regex.Escape(builder.ChutzpahLocation) + @"""\)\)";
             }
 
             protected static void BaseDirectory(string path)
