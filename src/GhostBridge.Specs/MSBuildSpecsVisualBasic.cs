@@ -148,23 +148,23 @@ namespace GhostBridge.Specs
 
             protected static string BehavesLike()
             {
-                return "Behaves_like<a_passing_chutzpah_test> success";
+                return "\r\n\t\tBehaves_like<a_passing_chutzpah_test> success";
             }
 
             protected static string ExecutePattern()
             {
-                return "Friend [of] As Because = (Sub() Execute())";
+                return "\r\n\t\tFriend [of] As Because = (Sub() Execute())";
             }
 
             protected static string SpecNamePattern(string filebit)
             {
-                return "Public NotInheritable Class with_" + filebit + @"_([A-Za-z0-9]*)\s*Inherits " + gb_ns + ".with_chutzpah_test_runner";
+                return @"\r\n\s*Public NotInheritable Class with_" + filebit + @"_([A-Za-z0-9]*)\s*Inherits " + gb_ns + ".with_chutzpah_test_runner";
             }
         
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"Friend context As Establish = \(Sub\(\) Init\("".*" + Regex.Escape(filebit) + @""",""" + Regex.Escape(builder.ChutzpahLocation) + @"""\)\)";
+                return @"\r\n\s*Friend context As Establish = \(Sub\(\) Init\("".*" + Regex.Escape(filebit) + @""",""" + Regex.Escape(builder.ChutzpahLocation) + @"""\)\)";
             }
 
             protected static void BaseDirectory(string path)
