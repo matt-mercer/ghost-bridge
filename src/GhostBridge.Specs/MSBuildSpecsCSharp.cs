@@ -152,7 +152,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecNamePattern(string filebit)
             {
-                return "public sealed class with_" + filebit + "_([A-Za-z0-9]*) : " + gb_ns + ".with_chutzpah_test_runner";
+                return "public sealed class with_" + filebit + "_([A-Za-z0-9]*) : with_chutzpah_test_runner";
             }
 
             protected static string SpecInitPattern(string filebit)

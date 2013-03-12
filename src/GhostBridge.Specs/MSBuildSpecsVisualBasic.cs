@@ -158,7 +158,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecNamePattern(string filebit)
             {
-                return @"\r\n\s*Public NotInheritable Class with_" + filebit + @"_([A-Za-z0-9]*)\s*Inherits " + gb_ns + ".with_chutzpah_test_runner";
+                return @"\r\n\s*Public NotInheritable Class with_" + filebit + @"_([A-Za-z0-9]*)\s*Inherits with_chutzpah_test_runner";
             }
         
 

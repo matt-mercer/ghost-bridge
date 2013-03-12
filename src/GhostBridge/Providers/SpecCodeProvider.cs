@@ -31,17 +31,23 @@ namespace GhostBridge.Providers
             config.ChutzpahLocation = config.ChutzpahLocation ?? @"..\..\..\..\lib\chutzpah\chutzpah.console.exe";
             
             var compile = new CodeCompileUnit();
+
+            var globalns = new CodeNamespace();
+            globalns.Imports.Add(new CodeNamespaceImport("Machine.Specifications"));
+            globalns.Imports.Add(new CodeNamespaceImport(config.MyNamespace));
+            compile.Namespaces.Add(globalns);
             var specNamespace = new CodeNamespace(config.TargetNamespace + ".ChutzpahSpecs");
             compile.Namespaces.Add(specNamespace);
 
-            specNamespace.Types.AddRange(files.Select(CreateSpec).ToArray());
+            foreach (var fileInfo in files)
+            {
+                AddSpec(specNamespace, fileInfo);
+            }
+            //specNamespace.Types.AddRange(files.Select(CreateSpec).ToArray());
 
             var provider = CreateProvider();
             var options = new CodeGeneratorOptions { BracingStyle = "C", BlankLinesBetweenMembers = false };
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine(UsingNamespace("Machine.Specifications"));
-            stringBuilder.AppendLine(UsingNamespace(config.MyNamespace));
-
             using (var writer = new StringWriter(stringBuilder))
             {
                 provider.GenerateCodeFromCompileUnit(compile, writer, options);
@@ -54,15 +60,25 @@ namespace GhostBridge.Providers
 
         }
 
-        CodeTypeDeclaration CreateSpec(FileInfo file)
+        void AddSpec(CodeNamespace ns,FileInfo file)
         {
             var fullPath = file.FullName;
             LogMessage("processing : " + file.FullName);
             var className = CreateUsefulName(file);
-            return CreateSpec(className, fullPath, config.BaseDirectory);
+
+            var spec = new CodeTypeDeclaration(className)
+            {
+                IsClass = true,
+                TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed,
+            };
+            ns.Types.Add(spec);
+
+            spec.BaseTypes.Add(new CodeTypeReference(typeof(with_chutzpah_test_runner).Name));
+
+            AddMembers(spec, fullPath, config.BaseDirectory);
         }
 
-        protected abstract CodeTypeDeclaration CreateSpec(string testName, string filePath, string baseDirectory);
+        protected abstract void AddMembers(CodeTypeDeclaration spec, string filePath, string baseDirectory);
 
         protected abstract string UsingNamespace(string ns);
 
