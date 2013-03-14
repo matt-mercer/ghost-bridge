@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask TaskName="GhostBridge.MSBuildTask" AssemblyFile="$(SolutionDir)lib\pretend-package\GhostBridge.dll" />
+	<UsingTask TaskName="GhostBridge.MSBuildTask" AssemblyFile="../../packages/Machine.Specifications.0.5.12/lib/net45/GhostBridge.dll" />
 	<Target Name="GhostBridge" AfterTargets="AfterResolveReferences">
 		<Message Text="Generating tests" Importance="High" />
-		<GhostBridge.MSBuildTask BaseDirectory="$(ProjectDir)jasmine-specs" Pattern="*.spec.js" Language="$(Language)" ProjectDir="$(ProjectDir)">
+		<GhostBridge.MSBuildTask BaseDirectory="$(ProjectDir)" Pattern="*.*" Language="$(Language)" ProjectDir="$(ProjectDir)">
 			<Output TaskParameter="SpecCount" ItemName="SpecCount" />
 		</GhostBridge.MSBuildTask>
 		<Message Text="Found :: @(SpecCount) specs" Importance="High" />

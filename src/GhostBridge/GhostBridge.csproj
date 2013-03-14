@@ -35,13 +35,16 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="chutzpah">
-      <HintPath>..\..\..\mynice\packages\Chutzpah.2.3.0\tools\chutzpah.dll</HintPath>
+    <Reference Include="chutzpah, Version=2.3.0.208, Culture=neutral, PublicKeyToken=1ca802c37ffe1896, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\chutzpah\chutzpah.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications">
+    <Reference Include="Machine.Specifications, Version=0.5.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications.Clr4">
+    <Reference Include="Machine.Specifications.Clr4, Version=0.5.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
@@ -57,9 +60,6 @@
     <Compile Include="a_passing_chutzpah_test.cs" />
     <Compile Include="ChutzpahTestRun.cs" />
     <Compile Include="ChutzpahTestSetup.cs" />
-    <None Include="GhostBridge.msbuild.targets">
-      <SubType>Designer</SubType>
-    </None>
     <Compile Include="Providers\CSharpSpecProvider.cs" />
     <Compile Include="MSBuildTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Tools\install.ps1" />
     <Compile Include="with_chutzpah_test_runner.cs" />
     <None Include="runners.zip" />
+    <None Include="GhostBridge.msbuild.targets">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

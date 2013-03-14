@@ -17,6 +17,6 @@
   <UseBuildPlatform></UseBuildPlatform>
   <ProxyProcessPath></ProxyProcessPath>
   <UseCPUArchitecture>AutoDetect</UseCPUArchitecture>
-  <AdditionalFilesToInclude>..\..\lib\**.*</AdditionalFilesToInclude>
+  <AdditionalFilesToInclude>..\..\packages\GhostBridge.0.1.0.0\lib\net45\**.*</AdditionalFilesToInclude>
   <HiddenWarnings>LostReference</HiddenWarnings>
 </ProjectConfiguration>
