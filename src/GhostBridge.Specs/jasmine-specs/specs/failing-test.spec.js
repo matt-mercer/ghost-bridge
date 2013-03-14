@@ -1,5 +1,5 @@
-/// <reference path="../test-utilities/jasmine.js" />
-/// <reference path="../test-utilities/jquery-1.8.3.js" />
+/// <reference path="../../test-utilities/jasmine.js" />
+/// <reference path="../../test-utilities/jquery-1.8.3.js" />
 
 describe("Failing tests", function () {
 

@@ -6,29 +6,19 @@ namespace GhostBridge
     public class with_chutzpah_test_runner
     {
         protected static string testFile;
-        protected static string chutzpahExe;
-        protected static string stdOut;
-        protected static string stdErr;
         protected static Exception err;
-        protected static ChutzpahTestRun ChutzpahTestRun;
+        protected static ChutzpahTestRun runner;
 
-        Establish context = () =>
-            {
-                chutzpahExe = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe";
-            };
 
-        Cleanup tidy = () =>
-            {
-                testFile = null;
-                chutzpahExe = null;
-                err = null;
-                ChutzpahTestRun = null;
-            };
+        Cleanup tidy = () => {
+            testFile = null;
+            err = null;
+            runner = null;
+        };
 
-        protected static void Init(string test, string exe)
+        protected static void Init(string file)
         {
-            testFile = test;
-            chutzpahExe = exe;
+            testFile = file;
         }
     
 
@@ -36,21 +26,14 @@ namespace GhostBridge
         {
             err = Catch.Exception(() =>
                 {
-                    Console.WriteLine("Chutzpah running specs in : " + testFile);
-                    ChutzpahTestRun = new ChutzpahTestRun(new ChutzpahTestSetup(testFile) { TestRunner = chutzpahExe });
-                    ChutzpahTestRun.Run();
+                    runner = new ChutzpahTestRun(new ChutzpahTestSetup(testFile));
+                    runner.Run();
                 });
-            if (err != null)
-            {
-                Console.WriteLine(err);
+            
+            if (err == null)
                 return;
-            }
-            stdOut = ChutzpahTestRun.StdOut;
-            stdErr = ChutzpahTestRun.StdErr;
-            Console.WriteLine(ChutzpahTestRun.StdErr);
-            Console.WriteLine(ChutzpahTestRun.StdOut);
 
-
+            Console.WriteLine(err);
         }
 
     }

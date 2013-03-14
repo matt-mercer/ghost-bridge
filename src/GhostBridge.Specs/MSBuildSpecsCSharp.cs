@@ -111,6 +111,16 @@ namespace GhostBridge.Specs
 
             It should_have_an_execute = () => output.ShouldContain(ExecutePattern());
 
+            It should_have_the_asserts_1 = () => output.ShouldContain("\r\n\t\tIt should_not_error = () => err.ShouldBeNull();\r\n");
+
+            It should_have_the_asserts_2 = () => output.ShouldContain("\r\n\t\tIt should_succeed = () => runner.Success.ShouldBeTrue();\r\n");
+
+            It should_have_the_asserts_3 = () => output.ShouldContain("\r\n\t\tIt should_have_no_test_errors = () => runner.Errors.ShouldBeEmpty();\r\n");
+
+            It should_have_the_asserts_4 = () => output.ShouldContain("\r\n\t\tIt should_have_some_passed_tests = () => runner.PassedTests.ShouldNotBeEmpty();\r\n");
+
+            It should_have_the_asserts_5 = () => output.ShouldContain("\r\n\t\tIt should_have_no_failed_tests = () => runner.FailedTests.ShouldBeEmpty();\r\n");
+
             It should_init_the_test = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
@@ -129,7 +139,6 @@ namespace GhostBridge.Specs
                     gb_ns = typeof (MSBuildTask).Namespace;
                     builder = new MSBuildTask {
                         Pattern = "passing-test.spec.js",
-                        ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe",
                         Language = "C#"
                     };
                     BaseDirectory(@"..\..\jasmine-specs\specs");
@@ -157,7 +166,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"Establish context = \(\) => Init\(@"".*" + Regex.Escape(filebit) + @""",@""" + Regex.Escape(builder.ChutzpahLocation) + @"""\);";
+                return @"Establish context = \(\) => Init\(@"".*" + Regex.Escape(filebit) + @"""\);";
 
             }
 

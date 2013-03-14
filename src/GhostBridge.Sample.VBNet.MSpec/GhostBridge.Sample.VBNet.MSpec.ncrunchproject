@@ -18,4 +18,5 @@
   <ProxyProcessPath></ProxyProcessPath>
   <UseCPUArchitecture>AutoDetect</UseCPUArchitecture>
   <AdditionalFilesToInclude>..\..\lib\**.*</AdditionalFilesToInclude>
+  <HiddenWarnings>LostReference</HiddenWarnings>
 </ProjectConfiguration>

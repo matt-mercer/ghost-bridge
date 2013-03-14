@@ -27,8 +27,6 @@ namespace GhostBridge.Providers
             specCount = files.Length;
             if (specCount < 1)
                 return string.Empty;
-
-            config.ChutzpahLocation = config.ChutzpahLocation ?? @"..\..\..\..\lib\chutzpah\chutzpah.console.exe";
             
             var compile = new CodeCompileUnit();
 

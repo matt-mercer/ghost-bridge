@@ -7,7 +7,6 @@ describe("Passing tests", function () {
 
         it("It passes", function() {
             expect(true).toBe(true);
-
         });
 
     });

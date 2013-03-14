@@ -20,7 +20,6 @@ namespace GhostBridge.Specs
 
             It should_set_the_namespace = () => output.ShouldContain(Namespace(gb_ns + ".ChutzpahSpecs"));
 
-
             It should_declare_the_class_1 = () => output.ShouldMatch(SpecNamePattern("sub1_passing_test_spec"));
 
             It should_declare_the_class_2 = () => output.ShouldMatch(SpecNamePattern("sub2_passing_test_spec"));
@@ -111,6 +110,16 @@ namespace GhostBridge.Specs
 
             It should_have_an_execute = () => output.ShouldContain(ExecutePattern());
 
+            It should_have_the_asserts_1 = () => output.ShouldContain("\r\n\t\tFriend should_not_error As It = (Sub() err.ShouldBeNull())\r\n");
+
+            It should_have_the_asserts_2 = () => output.ShouldContain("\r\n\t\tFriend should_succeed As It = (Sub() runner.Success.ShouldBeTrue())\r\n");
+
+            It should_have_the_asserts_3 = () => output.ShouldContain("\r\n\t\tFriend should_have_no_test_errors As It = (Sub() runner.Errors.ShouldBeEmpty())\r\n");
+
+            It should_have_the_asserts_4 = () => output.ShouldContain("\r\n\t\tFriend should_have_some_passed_tests As It = (Sub() runner.PassedTests.ShouldNotBeEmpty())\r\n");
+
+            It should_have_the_asserts_5 = () => output.ShouldContain("\r\n\t\tFriend should_have_no_failed_tests As It = (Sub() runner.FailedTests.ShouldBeEmpty())\r\n");
+
             It should_init_the_test = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
 
             It should_set_the_spec_count = () => builder.SpecCount.ToString().ShouldEqual("1");
@@ -130,7 +139,6 @@ namespace GhostBridge.Specs
                     builder = new MSBuildTask
                         {
                             Pattern = "passing-test.spec.js",
-                            ChutzpahLocation = @"..\..\..\..\lib\chutzpah\chutzpah.console.exe",
                             Language = "VB"
                         };
                     BaseDirectory(@"..\..\jasmine-specs\specs");
@@ -164,7 +172,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"\r\n\s*Friend context As Establish = \(Sub\(\) Init\("".*" + Regex.Escape(filebit) + @""",""" + Regex.Escape(builder.ChutzpahLocation) + @"""\)\)";
+                return @"\r\n\s*Friend context As Establish = \(Sub\(\) Init\("".*" + Regex.Escape(filebit) + @"""\)\)";
             }
 
             protected static void BaseDirectory(string path)

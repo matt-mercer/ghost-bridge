@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GhostBridge, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\pretend-package\GhostBridge.dll</HintPath>
+    </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
@@ -52,12 +56,7 @@
     <Compile Include="MSBuildSpecsVisualBasic.cs" />
     <Compile Include="MSBuildSpecsCSharp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GhostBridge\GhostBridge.csproj">
-      <Project>{903a9c7f-4ac9-4d7a-ba6f-411dde1b5521}</Project>
-      <Name>GhostBridge</Name>
-    </ProjectReference>
+    <Compile Include="TestRunnerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -75,6 +74,8 @@
     <Content Include="jasmine-specs\specs\passing-test.spec.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="test-utilities\jasmine.js" />
+    <Content Include="test-utilities\jquery-1.8.3.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

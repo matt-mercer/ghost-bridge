@@ -17,19 +17,26 @@ namespace GhostBridge
             if (!File.Exists)
                 throw new FileNotFoundException("File not found", filePath);
 
-            TestRunner = "chutzpah.console.exe";
-            Timeout = 1000;
+            TeamCity = Environment.GetEnvironmentVariable("TEAMCITY_PROJECT_NAME") != null;
+
+            Timeout = 5000;
+            Parallelism = 1;
         }
 
         public FileInfo File { get; private set; }
 
-        public string TestRunner { get; set; }
+        public bool OpenInBrowser { get; set; }
+
+        public string HeadlessBrowser { get; set; }
+
+        public int Parallelism { get; set; }
+
+        public bool TeamCity { get; set; }
 
         public int Timeout { get; set; }
 
-        public string PhantomOptions { get; set; }
+        public bool Debug { get; set; }
 
-        public string Options { get; set; }
 
     }
 }

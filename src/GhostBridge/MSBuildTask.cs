@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
+using Chutzpah;
 using GhostBridge.Providers;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
@@ -23,9 +25,6 @@ namespace GhostBridge
         public string Pattern { get; set; }
 
         public string[] Extensions { get; set; }
-
-        [Required]
-        public string ChutzpahLocation { get; set; }
 
         [Output]
         public ITaskItem SpecCount { get; set; }
@@ -56,6 +55,7 @@ namespace GhostBridge
             return true;
 
         }
+
 
         string GetExtension()
         {
@@ -93,12 +93,10 @@ namespace GhostBridge
             var config = new ProviderConfig
                 {
                     BaseDirectory = BaseDirectory,
-                    ChutzpahLocation = ChutzpahLocation,
                     Extensions = Extensions,
                     Log = Log,
                     MyNamespace = GetType().Namespace,
                     TargetNamespace = Namespace ?? (string.IsNullOrWhiteSpace(ProjectDir) ? GetType().Namespace : (new DirectoryInfo(ProjectDir).Name)),
-                    ProjectDir = ProjectDir,
                     Pattern = Pattern
                 };
 
