@@ -72,6 +72,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Tools\uninstall.ps1" />
     <None Include="Tools\install.ps1" />
     <Compile Include="with_chutzpah_test_runner.cs" />
     <None Include="runners.zip" />

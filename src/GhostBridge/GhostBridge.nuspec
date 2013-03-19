@@ -15,6 +15,7 @@
   <files>
 		<file src="GhostBridge.msbuild.targets" target="Content" />
 		<file src="Tools\install.ps1" target="Tools" />
+    <file src="Tools\uninstall.ps1" target="Tools" />
     <file src="..\..\lib\chutzpah\chutzpah.dll" target="lib\net45" />
     <file src="..\..\lib\chutzpah\AntiXssLibrary.dll" target="lib\net45" />
     <file src="..\..\lib\chutzpah\ServiceStack.Text.dll" target="lib\net45" />

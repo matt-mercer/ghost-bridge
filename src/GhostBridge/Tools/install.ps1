@@ -1,7 +1,7 @@
-﻿#param($installPath, $toolsPath, $package, $project)
+﻿param($installPath, $toolsPath, $package, $project)
 # comment the above line an uncomment these to run 'locally'
-$project = Get-Project
-$installPath = "C:\_src\ghost-bridge\packages\Machine.Specifications.0.5.12"
+#$project = Get-Project
+#$installPath = "C:\_src\ghost-bridge\packages\Machine.Specifications.0.5.12"
 
 $targets = "GhostBridge.msbuild.targets"
 $path = [System.IO.Path]
@@ -26,8 +26,8 @@ if($project.Type -eq 'Web Site') {
     Write-Warning "Skipping '$($project.Name)', Website projects are not supported"
     return
 }
-return
- Add-Type -AssemblyName ‘Microsoft.Build, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a’
+
+Add-Type -AssemblyName ‘Microsoft.Build, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a’
 # Grab the loaded MSBuild project for the project
 $msbuild = [Microsoft.Build.Evaluation.ProjectCollection]::GlobalProjectCollection.GetLoadedProjects($project.FullName) | Select-Object -First 1
 
