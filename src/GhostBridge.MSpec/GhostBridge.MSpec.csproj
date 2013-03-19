@@ -35,7 +35,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+			<ILMerge>True</ILMerge>
+			<SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\chutzpah\AntiXssLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="chutzpah, Version=2.3.0.208, Culture=neutral, PublicKeyToken=1ca802c37ffe1896, processorArchitecture=MSIL">
+      <ILMerge>True</ILMerge>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\chutzpah\chutzpah.dll</HintPath>
     </Reference>
@@ -49,6 +55,16 @@
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="ServiceStack.Text, Version=3.8.3.0, Culture=neutral, PublicKeyToken=e5435b53251faa46, processorArchitecture=MSIL">
+			<ILMerge>True</ILMerge>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\chutzpah\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+			<ILMerge>True</ILMerge>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\chutzpah\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -94,11 +110,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <PropertyGroup>
+    <ILMergeExecutable>"$(SolutionDir)lib\ILRepack\ilrepack"</ILMergeExecutable>
+  </PropertyGroup>
+  <Target Name="ILMerge" DependsOnTargets="Build" Inputs="@(IntermediateAssembly)" Outputs="@(MainAssembly -> '%(RelativeDir)%(Filename).ILMergeTrigger%(Extension)')">
+    <CreateItem Include="@(ReferencePath)" Condition="'%(ReferencePath.ILMerge)'=='True'">
+      <Output TaskParameter="Include" ItemName="ILMergeAssemblies" />
+    </CreateItem>
+    <Exec Command="$(ILMergeExecutable) /Closed /Internalize:$(ProjectDir)exclude.txt /Lib:@(OutputPath) /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(ILMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+    <!-- Make a copy of the merged output DLL to use as a trigger for incremental builds -->
+    <Copy SourceFiles="@(MainAssembly)" DestinationFiles="@(MainAssembly -> '%(RelativeDir)%(Filename)%(Extension)')" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

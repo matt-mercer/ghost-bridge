@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using GhostBridge.Mspec;
+using GhostBridge.MSpec;
 using Machine.Specifications;
 
 namespace GhostBridge.Specs

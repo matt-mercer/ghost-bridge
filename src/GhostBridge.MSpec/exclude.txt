@@ -1,0 +1,9 @@
+Chutzpah.RunnerCallback
+Chutzpah.TestRunner
+Chutzpah.ITestRunner
+Chutzpah.TestOptions
+Chutzpah.Models.TestCaseSummary
+Chutzpah.Models.TestCase
+Chutzpah.Models.TestError
+Chutzpah.Models.TestingMode
+

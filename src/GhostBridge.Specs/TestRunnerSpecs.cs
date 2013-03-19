@@ -1,6 +1,5 @@
-﻿using System;
-using System.IO;
-using GhostBridge.Mspec;
+﻿using System.IO;
+using GhostBridge.MSpec;
 using Machine.Specifications;
 
 namespace GhostBridge.Specs
