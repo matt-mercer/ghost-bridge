@@ -28,13 +28,14 @@ Add-Type -AssemblyName ‘Microsoft.Build, Version=4.0.0.0, Culture=neutral, Pub
 # Grab the loaded MSBuild project for the project
 $msbuild = [Microsoft.Build.Evaluation.ProjectCollection]::GlobalProjectCollection.GetLoadedProjects($project.FullName) | Select-Object -First 1
 
-$msbuild.Xml.Imports | Foreach-Object { 
-	if($_.Project -eq $targets) {
-		$msbuild.Xml.RemoveImport($targets) | Out-Null
-		$project.Save()
-		$msbuild.ReevaluateIfNecessary()
-		Write-Host "Removed ms build task"
-	}
+$importToRemove = $msbuild.Xml.Imports | Where-Object { $_.Project -eq $targets }
+
+if($importToRemove) {
+	$msbuild.Xml.RemoveChild($importToRemove) | Out-Null
+	$project.Save()
+	$msbuild.ReevaluateIfNecessary()
+	Write-Host "Removed ms build task"
 }
+
  
                  
