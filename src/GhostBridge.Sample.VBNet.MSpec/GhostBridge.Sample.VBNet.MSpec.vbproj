@@ -45,11 +45,26 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\..\packages\GhostBridge.0.1.0.0\lib\net45\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="chutzpah">
+      <HintPath>..\..\packages\GhostBridge.0.1.0.0\lib\net45\chutzpah.dll</HintPath>
+    </Reference>
+    <Reference Include="GhostBridge">
+      <HintPath>..\..\packages\GhostBridge.0.1.0.0\lib\net45\GhostBridge.dll</HintPath>
+    </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Specifications.Clr4">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.Clr4.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\packages\GhostBridge.0.1.0.0\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\packages\GhostBridge.0.1.0.0\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -95,6 +110,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GhostBridge.msbuild.targets" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -107,21 +123,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="jasmine-specs\nested-specs\sub1\passing-test.spec.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jasmine-specs\nested-specs\sub2\passing-test.spec.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jasmine-specs\specs\failing-test.spec.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jasmine-specs\specs\passing-test.spec.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="jasmine-specs\nested-specs\sub1\passing-test.spec.js" />
+    <Content Include="jasmine-specs\nested-specs\sub2\passing-test.spec.js" />
+    <Content Include="jasmine-specs\specs\failing-test.spec.js" />
+    <Content Include="jasmine-specs\specs\passing-test.spec.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="GhostBridge.msbuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
