@@ -32,3 +32,4 @@ error*.xml
 src/*.dll
 _Chutzpah.*
 ghost_bridge_specs.*
+*.nupkg
