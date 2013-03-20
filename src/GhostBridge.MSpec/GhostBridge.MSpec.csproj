@@ -36,8 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
-			<ILMerge>True</ILMerge>
-			<SpecificVersion>False</SpecificVersion>
+      <ILMerge>True</ILMerge>
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\chutzpah\AntiXssLibrary.dll</HintPath>
     </Reference>
     <Reference Include="chutzpah, Version=2.3.0.208, Culture=neutral, PublicKeyToken=1ca802c37ffe1896, processorArchitecture=MSIL">
@@ -56,12 +56,12 @@
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="ServiceStack.Text, Version=3.8.3.0, Culture=neutral, PublicKeyToken=e5435b53251faa46, processorArchitecture=MSIL">
-			<ILMerge>True</ILMerge>
+      <ILMerge>True</ILMerge>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\chutzpah\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap, Version=2.6.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-			<ILMerge>True</ILMerge>
+      <ILMerge>True</ILMerge>
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\chutzpah\StructureMap.dll</HintPath>
     </Reference>
@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="a_failing_chutzpah_test.cs" />
     <Compile Include="a_passing_chutzpah_test.cs" />
+    <Compile Include="ChutzpahContainer.cs" />
     <Compile Include="ChutzpahTestRun.cs" />
     <Compile Include="ChutzpahTestSetup.cs" />
     <Compile Include="Providers\CSharpSpecProvider.cs" />
@@ -117,7 +118,7 @@
     <CreateItem Include="@(ReferencePath)" Condition="'%(ReferencePath.ILMerge)'=='True'">
       <Output TaskParameter="Include" ItemName="ILMergeAssemblies" />
     </CreateItem>
-    <Exec Command="$(ILMergeExecutable) /Closed /Internalize:$(ProjectDir)exclude.txt /Lib:@(OutputPath) /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(ILMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+    <Exec Command="$(ILMergeExecutable) /Closed /Internalize:@(ProjectDir)exclude.txt  /Lib:@(OutputPath) /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(ILMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
     <!-- Make a copy of the merged output DLL to use as a trigger for incremental builds -->
     <Copy SourceFiles="@(MainAssembly)" DestinationFiles="@(MainAssembly -> '%(RelativeDir)%(Filename)%(Extension)')" />
   </Target>

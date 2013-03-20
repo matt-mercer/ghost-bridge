@@ -32,9 +32,11 @@ namespace GhostBridge.MSpec
             if (setup == null)
                 throw new ArgumentNullException("setup");
             this.setup = setup;
+            Console.WriteLine("started");
             assemblyDir = Path.GetDirectoryName(typeof(TestRunner).Assembly.Location);
             mutex = new Mutex(false,"pc-" + assemblyDir.GetHashCode());
             testRunnerCallback = new ChutzpahRunnerCallback(setup.TeamCity,setup.File.FullName);
+            
         }
 
 
@@ -129,7 +131,8 @@ namespace GhostBridge.MSpec
         {
             var phantomLocation = FindBrowser() ?? EnsurePhantom();
 
-            var testRunner = TestRunner.Create(setup.Debug);
+            var testRunner = ChutzpahContainer.Current.GetInstance<TestRunner>();
+            testRunner.DebugEnabled = setup.Debug;
             if (!string.IsNullOrEmpty(phantomLocation))
                 TestRunner.HeadlessBrowserName = phantomLocation;
           

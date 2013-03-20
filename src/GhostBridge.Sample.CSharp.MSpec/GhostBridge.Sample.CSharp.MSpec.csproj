@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GhostBridge.MSpec">
+      <HintPath>..\..\packages\GhostBridge.MSpec.0.2.0.0\lib\net45\GhostBridge.MSpec.dll</HintPath>
+    </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
@@ -56,10 +59,12 @@
     <Content Include="jasmine-specs\specs\passing-test.spec.js" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GhostBridge.msbuild.targets" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="GhostBridge.msbuild.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
