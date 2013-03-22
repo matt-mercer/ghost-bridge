@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GhostBridge.MSpec, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\pretend-package-mspec\GhostBridge.MSpec.dll</HintPath>
-    </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>
     </Reference>
@@ -44,6 +40,9 @@
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,10 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MSBuildNUnitVisualBasic.cs" />
+    <Compile Include="MSBuildNUnitCSharp.cs" />
     <Compile Include="MSBuildSpecsVisualBasic.cs" />
     <Compile Include="MSBuildSpecsCSharp.cs" />
+    <Compile Include="NUnitRunnerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestRunnerSpecs.cs" />
+    <Compile Include="MSpecRunnerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -76,6 +78,16 @@
     </Content>
     <Content Include="test-utilities\jasmine.js" />
     <Content Include="test-utilities\jquery-1.8.3.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GhostBridge.MSpec\GhostBridge.MSpec.csproj">
+      <Project>{903a9c7f-4ac9-4d7a-ba6f-411dde1b5521}</Project>
+      <Name>GhostBridge.MSpec</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GhostBridge.NUnit\GhostBridge.NUnit.csproj">
+      <Project>{b2f36088-0592-4b01-b717-fb1d297c0280}</Project>
+      <Name>GhostBridge.NUnit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

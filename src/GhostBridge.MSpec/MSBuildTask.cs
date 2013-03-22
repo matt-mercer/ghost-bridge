@@ -69,15 +69,15 @@ namespace GhostBridge.MSpec
             }
         }
 
-        SpecCodeProvider GetProvider(ProviderConfig config)
+        MSpecCodeProvider GetProvider(ProviderConfig config)
         {
             var language = (Language ?? string.Empty);
             switch (language)
             {
                 case "C#":
-                    return new CSharpSpecProvider(config);
+                    return new CSharpMSpecProvider(config);
                 case "VB":
-                    return new VisualBasicSpecProvider(config);
+                    return new VisualBasicMSpecProvider(config);
                 default:
                     throw new Exception("Language not recognised, supported languages : C# & VB");
             }
