@@ -1,7 +1,6 @@
 ﻿using System.CodeDom;
 using System.CodeDom.Compiler;
 using Microsoft.VisualBasic;
-using NUnit.Framework;
 
 namespace GhostBridge.NUnit.Providers
 {
@@ -25,20 +24,20 @@ namespace GhostBridge.NUnit.Providers
         protected override void AddMembers(CodeTypeDeclaration spec, string filePath, string baseDirectory)
         {
 
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t<" + typeof(SetUpAttribute).Name.Replace("Attribute", "") + ">"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t<SetUp>"));
 
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\tpublic Sub Init()"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tInit(@\"" + filePath + "\")"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\tpublic Sub Setup()"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tInit(\"" + filePath + "\")"));
             spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\tEnd Sub"));
 
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t<" + typeof(TestAttribute).Name.Replace("Attribute", "") + ">"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t<Test>"));
             spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\tpublic Sub AllTestsPass()"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tExecute();"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsNull(err);"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsTrue(runner.Success);"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsEmpty(runner.Errors);"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsNotEmpty(runner.PassedTests);"));
-            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsEmpty(runner.FailedTests);"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tExecute()"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsNull(err)"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsTrue(runner.Success)"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsEmpty(runner.Errors)"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsNotEmpty(runner.PassedTests)"));
+            spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\t\tAssert.IsEmpty(runner.FailedTests)"));
             spec.Members.Add(new CodeSnippetTypeMember("\r\n\t\tEnd Sub"));
 
 

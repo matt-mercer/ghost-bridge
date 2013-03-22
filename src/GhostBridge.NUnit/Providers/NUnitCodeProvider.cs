@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
-using NUnit.Framework;
 
 namespace GhostBridge.NUnit.Providers
 {
@@ -32,7 +31,7 @@ namespace GhostBridge.NUnit.Providers
             var compile = new CodeCompileUnit();
 
             var globalns = new CodeNamespace();
-            globalns.Imports.Add(new CodeNamespaceImport(typeof(TestFixtureAttribute).Namespace));
+            globalns.Imports.Add(new CodeNamespaceImport("NUnit.Framework"));
             globalns.Imports.Add(new CodeNamespaceImport(config.MyNamespace));
             compile.Namespaces.Add(globalns);
             var specNamespace = new CodeNamespace(config.TargetNamespace + ".ChutzpahSpecs");
@@ -71,7 +70,7 @@ namespace GhostBridge.NUnit.Providers
                 TypeAttributes = TypeAttributes.Public | TypeAttributes.Sealed,
             };
             ns.Types.Add(spec);
-            spec.CustomAttributes.Add(new CodeAttributeDeclaration(typeof (TestFixtureAttribute).Name.Replace("Attribute", "")));
+            spec.CustomAttributes.Add(new CodeAttributeDeclaration("TestFixture"));
             spec.BaseTypes.Add(new CodeTypeReference(typeof(with_chutzpah_test_runner).Name));
 
             AddMembers(spec, fullPath, config.BaseDirectory);

@@ -17,6 +17,6 @@
   <UseBuildPlatform></UseBuildPlatform>
   <ProxyProcessPath></ProxyProcessPath>
   <UseCPUArchitecture>AutoDetect</UseCPUArchitecture>
-  <AdditionalFilesToInclude>..\..\packages\GhostBridge.MSpec.0.2.0.0\**.*</AdditionalFilesToInclude>
+  <AdditionalFilesToInclude>..\..\packages\GhostBridge.MSpec.1.0.0.0\**.*</AdditionalFilesToInclude>
   <HiddenWarnings>LostReference</HiddenWarnings>
 </ProjectConfiguration>

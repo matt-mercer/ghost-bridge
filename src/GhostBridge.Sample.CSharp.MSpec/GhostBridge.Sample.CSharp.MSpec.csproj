@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GhostBridge.MSpec">
-      <HintPath>..\..\packages\GhostBridge.MSpec.0.2.0.0\lib\net45\GhostBridge.MSpec.dll</HintPath>
+      <HintPath>..\..\packages\GhostBridge.MSpec.1.0.0.0\lib\net45\GhostBridge.MSpec.dll</HintPath>
     </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\..\packages\Machine.Specifications.0.5.12\lib\net40\Machine.Specifications.dll</HintPath>

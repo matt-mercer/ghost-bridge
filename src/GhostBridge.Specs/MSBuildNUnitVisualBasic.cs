@@ -110,17 +110,17 @@ namespace GhostBridge.Specs
 
             It should_have_the_asserts_1 = () => output.ShouldContain("\r\n\t\t<Test>\r\n\t\tpublic Sub AllTestsPass()");
 
-            It should_have_the_asserts_2 = () => output.ShouldContain("\r\n\t\t\tExecute();\r\n");
+            It should_have_the_asserts_2 = () => output.ShouldContain("\r\n\t\t\tExecute()\r\n");
 
-            It should_have_the_asserts_3 = () => output.ShouldContain("\r\n\t\t\tAssert.IsNull(err);\r\n");
+            It should_have_the_asserts_3 = () => output.ShouldContain("\r\n\t\t\tAssert.IsNull(err)\r\n");
 
-            It should_have_the_asserts_4 = () => output.ShouldContain("\r\n\t\t\tAssert.IsTrue(runner.Success);\r\n");
+            It should_have_the_asserts_4 = () => output.ShouldContain("\r\n\t\t\tAssert.IsTrue(runner.Success)\r\n");
 
-            It should_have_the_asserts_5 = () => output.ShouldContain("\r\n\t\t\tAssert.IsEmpty(runner.Errors);\r\n");
+            It should_have_the_asserts_5 = () => output.ShouldContain("\r\n\t\t\tAssert.IsEmpty(runner.Errors)\r\n");
 
-            It should_have_the_asserts_6 = () => output.ShouldContain("\r\n\t\t\tAssert.IsNotEmpty(runner.PassedTests);\r\n");
+            It should_have_the_asserts_6 = () => output.ShouldContain("\r\n\t\t\tAssert.IsNotEmpty(runner.PassedTests)\r\n");
 
-            It should_have_the_asserts_7 = () => output.ShouldContain("\r\n\t\t\tAssert.IsEmpty(runner.FailedTests);\r\n");
+            It should_have_the_asserts_7 = () => output.ShouldContain("\r\n\t\t\tAssert.IsEmpty(runner.FailedTests)\r\n");
 
             It should_init_the_test = () => output.ShouldMatch(SpecInitPattern(@"jasmine-specs\specs\passing-test.spec.js"));
 
@@ -174,7 +174,7 @@ namespace GhostBridge.Specs
 
             protected static string SpecInitPattern(string filebit)
             {
-                return @"\<SetUp\>\r\s*public Sub Init\(\)\r\s*Init\(@"".*" + Regex.Escape(filebit) + @"""\)\r\s*End Sub";
+                return @"\<SetUp\>\r\s*public Sub Setup\(\)\r\s*Init\("".*" + Regex.Escape(filebit) + @"""\)\r\s*End Sub";
             }
 
             protected static void BaseDirectory(string path)

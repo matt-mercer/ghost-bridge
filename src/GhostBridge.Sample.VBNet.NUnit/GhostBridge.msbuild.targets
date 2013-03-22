@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask TaskName="GhostBridge.MSpec.MSBuildTask" AssemblyFile="../../packages/GhostBridge.MSpec.1.0.0.0/lib/net45/GhostBridge.MSpec.dll" />
+	<UsingTask TaskName="GhostBridge.NUnit.MSBuildTask" AssemblyFile="../../packages/GhostBridge.NUnit.1.0.0.0/lib/net45/GhostBridge.NUnit.dll" />
 	<Target Name="GhostBridge" AfterTargets="AfterResolveReferences">
 		<Message Text="Generating tests" Importance="High" />
 		<MSBuildTask BaseDirectory="$(ProjectDir)" Pattern="*.*" Language="$(Language)" ProjectDir="$(ProjectDir)">
@@ -8,7 +8,7 @@
 		</MSBuildTask>
 		<Message Text="Found :: @(SpecCount) specs" Importance="High" />
 		<ItemGroup Condition="@(SpecCount)!='0'">
-			<Compile Include="ghost_bridge_specs.cs" />
+			<Compile Include="ghost_bridge_specs.vb" />
 		</ItemGroup>
 		<Message Text="Complete" Importance="High" />
 	</Target>

@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
-using Machine.Specifications;
 
 namespace GhostBridge.MSpec.Providers
 {
@@ -32,7 +31,7 @@ namespace GhostBridge.MSpec.Providers
             var compile = new CodeCompileUnit();
 
             var globalns = new CodeNamespace();
-            globalns.Imports.Add(new CodeNamespaceImport(typeof(Establish).Namespace));
+            globalns.Imports.Add(new CodeNamespaceImport("Machine.Specifications"));
             globalns.Imports.Add(new CodeNamespaceImport(config.MyNamespace));
             compile.Namespaces.Add(globalns);
             var specNamespace = new CodeNamespace(config.TargetNamespace + ".ChutzpahSpecs");

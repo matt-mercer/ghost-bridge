@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask TaskName="GhostBridge.MSpec.MSBuildTask" AssemblyFile="dummypath" />
+	<UsingTask TaskName="GhostBridge.NUnit.MSBuildTask" AssemblyFile="dummypath" />
 	<Target Name="GhostBridge" AfterTargets="AfterResolveReferences">
 		<Message Text="Generating tests" Importance="High" />
 		<MSBuildTask BaseDirectory="$(ProjectDir)" Pattern="*.*" Language="$(Language)" ProjectDir="$(ProjectDir)">
