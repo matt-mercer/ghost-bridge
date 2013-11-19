@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>GhostBridge.NUnit</id>
-	 <version>1.1.0.0</version>
+	 <version>1.2.0.0</version>
     <title>GhostBridge.NUnit</title>
     <authors>vurt007</authors>
     <owners>vurt007</owners>
