@@ -9,7 +9,7 @@ Ghost-Bridge is a bridge for continuous testing / build server testing of JavaSc
 Ghost-Bridge uses a custom MS-Build target to ILGen a code stub hook for MSpec or NUnit that encapsulates the [Chutzpah](http://chutzpah.codeplex.com/) Test Runner,  ( Chutzpah uses PhantomJs.exe and supports [QUnit](http://qunitjs.com/) and [Jasmine](http://pivotal.github.io/jasmine/) Javascript tests )
 
 
-# Versions
+# .Net Versions
 At the moment it only supports .Net 4.5, this is because I wanted it to be dependency free, (apart from the test frameworks themselves), to make it portable for NCrunch .. I didn't get round to implementing the zip inflate algorithm for .net 4.0, oh and Chutzpah is only .net 4.0 in recent versions
 
 
