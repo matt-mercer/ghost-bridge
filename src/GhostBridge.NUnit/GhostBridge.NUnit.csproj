@@ -105,7 +105,7 @@
     <None Include="Tools\uninstall.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="phantomjs.exe" />
+    <EmbeddedResource Include="phantomjs.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
