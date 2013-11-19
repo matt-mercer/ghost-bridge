@@ -132,7 +132,8 @@ namespace GhostBridge.MSpec
             var phantomLocation = FindBrowser() ?? EnsurePhantom();
 
             var testRunner = ChutzpahContainer.Current.GetInstance<TestRunner>();
-            testRunner.DebugEnabled = setup.Debug;
+            if(setup.Debug)
+                testRunner.EnableDebugMode();
             if (!string.IsNullOrEmpty(phantomLocation))
                 TestRunner.HeadlessBrowserName = phantomLocation;
           

@@ -40,7 +40,7 @@
       <HintPath>..\..\packages\GhostBridge.NUnit.1.0.0.0\lib\net45\GhostBridge.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
